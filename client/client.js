@@ -1,15 +1,13 @@
 var domready = require("domready"),
-    RecipeList = require("./RecipeList.jsx"),
-    React = require("react");
-
-var recipies = [
-    { name: "Spagetti and meatballs" },
-    { name: "Oatmeal"},
-    { name: "Club sandwich"},
-    { name: "Wienersnitzel"}
-]
+    React = require("react"),
+    request = require("browser-request"),
+    RecipeList = require("./RecipeList.jsx");
 
 domready(function(){
     var container = document.getElementById("container")
-    React.render(<RecipeList recipies={recipies} />, container);
+    request({method: "GET", url: "/recipies", json: true}, function(err, response, body){
+        if (err)
+            throw err;
+        React.render(<RecipeList recipies={body} />, container);
+    });
 });

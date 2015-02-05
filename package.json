@@ -15,8 +15,10 @@
     "reactify": "^0.17.1"
   },
   "dependencies": {
+    "browser-request": "^0.3.3",
     "domready": "^1.0.7",
     "express": "^4.10.4",
+    "nedb": "^1.1.1",
     "react": "^0.12.1"
   }
 }
