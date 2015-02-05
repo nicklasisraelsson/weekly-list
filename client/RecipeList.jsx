@@ -1,11 +1,13 @@
-var React = require('react');
+var React = require('react'),
+    RecipeListItem = require('./RecipeListItem.jsx');
 module.exports = React.createClass({
     render: function(){
-        var recipies = this.props.recipies;
+        items = [];
+        this.props.recipies.forEach(function(recipe){
+            items.push(<RecipeListItem recipe={recipe} />);
+        });
         return <ul>
-                    {recipies.map(function(recipe){
-                        return <li>{recipe.name}</li>;
-                    })}
+                    {items}
                 </ul>
     }
 });
