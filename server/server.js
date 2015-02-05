@@ -1,6 +1,9 @@
 var express = require('express'),
-    db = require('./db.js');
-var app = express()
+    db = require('./db.js'),
+    bodyParser = require('body-parser');
+
+var app = express();
+app.use(bodyParser.json());
 db.initialize();
 
 app.get('/recipies', function(req, res){
@@ -11,7 +14,15 @@ app.get('/recipies', function(req, res){
             res.send(JSON.stringify(docs));
         }
     });
-})
+});
+
+app.post('/recipies', function(req, res){
+  var recipie = {
+    name : req.body.name
+  };
+  db.addRecipie(recipie);
+  res.send(JSON.stringify(recipie));
+});
 
 app.use(express.static(__dirname + "/../public"));
 

@@ -6,26 +6,18 @@ var DataStore = require('nedb'),
     });
 var db = {
     recipies: recipiesDb,
+
     initialize: function(){
-        recipiesDb.findOne({ name: "Spagetti and meatballs" }, function(err, doc){
+        this.addRecipie({ name: "Spagetti and meatballs" });
+        this.addRecipie({ name: "Wienersnitzel" });
+        this.addRecipie({ name: "Club sandwich" });
+    },
+
+    addRecipie: function(recipie){
+        if (!recipie) throw "no recipe to add";
+        recipiesDb.findOne({ name: recipie.name }, function(err, doc){
             if (!doc){
-                recipiesDb.insert({
-                    name: "Spagetti and meatballs"
-                })
-            }
-        });
-        recipiesDb.findOne({ name: "Wienersnitzel" }, function(err, doc){
-            if (!doc){
-                recipiesDb.insert({
-                    name: "Wienersnitzel"
-                })
-            }
-        });
-        recipiesDb.findOne({ name: "Club sandwich" }, function(err, doc){
-            if (!doc){
-                recipiesDb.insert({
-                    name: "Club sandwich"
-                })
+                recipiesDb.insert(recipie);
             }
         });
     }
