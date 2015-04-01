@@ -17,6 +17,7 @@ var db = {
         if (!recipie) throw "no recipe to add";
         recipiesDb.findOne({ name: recipie.name }, function(err, doc){
             if (!doc){
+                recipie.addedOn = new Date().getTime();
                 recipiesDb.insert(recipie);
             }
         });

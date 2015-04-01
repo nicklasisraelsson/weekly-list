@@ -11,6 +11,10 @@ module.exports = React.createClass({
     },
 
     componentDidMount: function(){
+        this.updateRecipies();
+    },
+
+    updateRecipies: function(){
         var self = this;
         request({method: "GET", url: "/recipies", json: true}, function(err, response, body){
             if (err){
@@ -26,10 +30,12 @@ module.exports = React.createClass({
     },
 
     handleRecipeAdded: function(recipie){
-        request({method: "POST", url: "/recipies", body: JSON.stringify(recipie), json: true}, function(err, response, body){
+        var self = this;
+        request({method: "POST", url: "/recipies", body: recipie, json: true}, function(err, response, body){
             if (err){
                 throw err;
             }
+            self.updateRecipies();
         });
     },
 

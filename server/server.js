@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 db.initialize();
 
 app.get('/recipies', function(req, res){
-    db.recipies.find({}, function(err, docs){
+    db.recipies.find({}).sort({ addedOn: 1}).exec(function(err, docs){
         if (err){
             res.send(err);
         } else {

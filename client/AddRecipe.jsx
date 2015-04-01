@@ -7,8 +7,9 @@ module.exports = React.createClass({
 
     onSubmit: function(e){
         e.preventDefault();
-        var name = this.refs.recipeName.getDOMNode().value;
-        this.props.onRecipeAdd({name: name});
+        var nameElement = this.refs.recipeName.getDOMNode();
+        this.props.onRecipeAdd({name: nameElement.value});
+        nameElement.value = "";
     },
 
     render: function(){
