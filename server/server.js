@@ -11,17 +11,15 @@ app.get('/recipies', function(req, res){
         if (err){
             res.send(err);
         } else {
-            res.send(JSON.stringify(docs));
+            res.json(docs);
         }
     });
 });
 
 app.post('/recipies', function(req, res){
-  var recipie = {
-    name : req.body.name
-  };
+  var recipie = req.body;
   db.addRecipie(recipie);
-  res.send(JSON.stringify(recipie));
+  res.json(recipie);
 });
 
 app.use(express.static(__dirname + "/../public"));
