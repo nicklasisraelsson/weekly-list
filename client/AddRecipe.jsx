@@ -14,9 +14,16 @@ module.exports = React.createClass({
     },
 
     getRecipe: function(){
+        var ingredients = [];
+        this.refs.ingredients.getDOMNode().value.split('\n').map(function(ingredient){
+            ingredient = ingredient.trim();
+            if (ingredient != ""){
+                ingredients.push(ingredient);
+            }
+        });
         return {
             name: this.refs.name.getDOMNode().value,
-            ingredients: this.refs.ingredients.getDOMNode().value
+            ingredients: ingredients
         }
     },
 

@@ -8,9 +8,9 @@ var db = {
     recipies: recipiesDb,
 
     initialize: function(){
-        this.addRecipie({ name: "Spagetti and meatballs", ingredients: "Spagetti\nMeatballs\n" });
-        this.addRecipie({ name: "Wienersnitzel", ingredients:"Wienersnitzel\nPommes stripes\nMayo"});
-        this.addRecipie({ name: "Club sandwich", ingredients: "Bacon\nChicken\nTomatoes\nBread" });
+        this.addRecipie({ name: "Spagetti and meatballs", ingredients: ["Spagetti", "Meatballs"] });
+        this.addRecipie({ name: "Wienersnitzel", ingredients: ["Wienersnitzel", "Pommes stripes","Mayo"] });
+        this.addRecipie({ name: "Club sandwich", ingredients: ["Bacon", "Chicken", "Tomatoes", "Bread"] });
     },
 
     addRecipie: function(recipie){
@@ -20,7 +20,6 @@ var db = {
                 recipie.addedOn = new Date().getTime();
                 recipiesDb.insert(recipie);
             }
-            //TODO: extract ingredients when adding new to an ingredients array
         });
     }
 }

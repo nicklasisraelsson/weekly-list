@@ -44,10 +44,11 @@ module.exports = React.createClass({
         this.state.recipies.forEach(function(recipe){
             items.push(<RecipeListItem recipe={recipe} />);
         });
-        return <div><AddRecipe onRecipeAdd={this.handleRecipeAdded}/>
-                <ul>
-                    {items}
-                </ul>
-                </div>
+        return <div>
+            <AddRecipe onRecipeAdd={this.handleRecipeAdded}/>
+            <ul>
+                {items}
+            </ul>
+        </div>
     }
 });
